@@ -1,4 +1,3 @@
-# 20241123 BMI計算更新進階
 def get_status(bmi:float)->str:
     '''
     docstring
@@ -31,15 +30,3 @@ def BMI_math(height_cm:float, weight_kg:float)->tuple[float, str]:
     bmi_kg_m2 = round(weight_kg/(height_m**2), 2)
     bmi_str = get_status(bmi_kg_m2)
     return bmi_kg_m2, bmi_str
-
-while(True):
-    try:
-            height_cm = float(input("請輸入身高(公分):"))
-            weight_kg = float(input("請輸入體重(公斤):"))
-            bmi_value, bmi_str = BMI_math(height_cm, weight_kg)
-            break
-        except Exception:
-            print('輸入格式錯誤,請重新輸入!')
-        
-print(f"您的BMI值是{bmi_value}\n您的體重{bmi_str}")
-print("程式結束")
