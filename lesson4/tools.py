@@ -24,7 +24,8 @@ def get_status(bmi:float)->str:
     else :
         bmi_str = '過輕' 
     return bmi_str
-    
+
+   
 def BMI_math(height_cm:float, weight_kg:float)->tuple[float, str]:
     height_m = round(height_cm/100, 2)
     bmi_kg_m2 = round(weight_kg/(height_m**2), 2)
