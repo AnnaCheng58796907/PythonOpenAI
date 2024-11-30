@@ -6,11 +6,9 @@ class BMI:
 
 
     def get_BMI(self)->float:
-        self.bmi = round(self.weight/((self.height/100)**2), 2)
-        return self.bmi
+        return round(self.weight/((self.height/100)**2), 2)
 
-    def get_status(self) -> str:
-        bmi = self.get_BMI()
+    def get_status(self, bmi:float) -> str:
         if bmi >= 35:
             bmi_str = '重度肥胖'
         elif bmi >= 30:
@@ -36,8 +34,10 @@ def main():
             break
         except Exception:
             print('輸入格式錯誤,請重新輸入!')
+
+    bmi = p1.get_BMI()
         
-    print(f"您的BMI值是{p1.get_BMI()}\n您的體重{p1.get_status()}")
+    print(f"{name}的BMI值是{bmi}\n您的體重{p1.get_status(bmi)}")
     print("程式結束")
 
 if __name__ == '__main__':
