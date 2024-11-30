@@ -25,15 +25,20 @@ class BMI:
             bmi_str = '過輕'
         return bmi_str
 
-while(True):
-    try:
-        name = input("姓名:")
-        height = float(input("請輸入身高(公分):"))
-        weight = float(input("請輸入體重(公斤):"))
-        p1 = BMI(name=name,height=height,weight=weight)   
-        break
-    except Exception:
-        print('輸入格式錯誤,請重新輸入!')
-    
-print(f"您的BMI值是{p1.get_BMI()}\n您的體重{p1.get_status()}")
-print("程式結束")
+
+def main():
+    while(True):
+        try:
+            name = input("姓名:")
+            height = float(input("請輸入身高(公分):"))
+            weight = float(input("請輸入體重(公斤):"))
+            p1 = BMI(name=name,height=height,weight=weight)   
+            break
+        except Exception:
+            print('輸入格式錯誤,請重新輸入!')
+        
+    print(f"您的BMI值是{p1.get_BMI()}\n您的體重{p1.get_status()}")
+    print("程式結束")
+
+if __name__ == '__main__':
+    main()
