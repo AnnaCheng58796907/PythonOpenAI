@@ -1,7 +1,9 @@
 import streamlit as st
+import tools
 
+sitenames:list[str] = tools.get_sitenames(excel_name='aqi.xlsx')
 # Using object notation
 add_selectbox = st.sidebar.selectbox(
-    "How would you like to be contacted?",
-    ("Email", "Home phone", "Mobile phone")
+    "請選擇站點名稱:",
+    sitenames
 )
