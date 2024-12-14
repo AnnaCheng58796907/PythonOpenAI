@@ -14,14 +14,12 @@ def get_youbikes()->list[dict]:
         r.raise_for_status()
         
 
-    except HTTPError as e:
-        print(e)
-
-    except RequestException as e:
-        print(e)
-
-    except Exception as e:
-        print(e)
+    except HTTPError:
+        raise Exception("伺服器有問題!")
+    except RequestException:
+        raise Exception("連線有問題")
+    except Exception:
+        raise Exception("其他問題")
 
     else:
         print('下載成功')
