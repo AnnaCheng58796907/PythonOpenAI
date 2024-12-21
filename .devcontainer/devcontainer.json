@@ -16,11 +16,7 @@
 			"extensions": [
 				"ms-python.python",
 				"ms-toolsai.jupyter"
-			],
-			"settings": {
-				"terminal.integrated.shell.linux": "/bin/bash",
-				"terminal.integrated.shellArgs.linux": ["-c", "source /workspaces/PythonOpenAI/venv/bin/activate && exec bash"]
-			}
+			]
 		}
 	}
 }
