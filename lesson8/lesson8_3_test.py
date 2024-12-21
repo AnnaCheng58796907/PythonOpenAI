@@ -60,8 +60,15 @@ df['site_info'] = df.apply(
 )
 
 # 創建地圖對象，設置初始位置和縮放級別
-m = folium.Map(location=[25.0330, 121.5654], zoom_start=13)
-
+#m = folium.Map(location=[25.0330, 121.5654], zoom_start=13)
+ # 顯示地圖並標記站點
+m = st.map(
+    data=df,
+    latitude='latitude',
+    longitude='longitude',
+    color='#FF0000',  # 紅色標記
+    size=15,          # 標記大小
+)
 
 # 顯示站點名稱在地圖上方
 # st.write("站點名稱:")
@@ -77,16 +84,9 @@ for _, row in df.iterrows():
 
 # 顯示地圖
 st.write("站點地圖:")
-st_folium(m, width=700, height=500)
+#st_folium(m, width=700, height=500)
 
-# 顯示地圖並標記站點
-st.map(
-    data=df,
-    latitude='latitude',
-    longitude='longitude',
-    color='#FF0000',  # 紅色標記
-    size=15,          # 標記大小
-)
+st_folium(m)
 
 # 在地圖下方顯示站點詳細資訊
 for _, row in df.iterrows():
