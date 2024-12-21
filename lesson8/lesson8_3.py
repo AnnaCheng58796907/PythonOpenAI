@@ -15,7 +15,20 @@ with col1:
     selected_sarea = st.selectbox("行政區域", area_list)
 
 with col2:
-    st.write(selected_sarea)
+    def filter_func(value:dict)->bool:
+        return value['sarea'] == selected_sarea
+
+    filter_list = list(filter(filter_func, youbike_data))
+    show_data:list[dict] = [{
+                            '站點' : item['sna'],
+                            '總車輛數' : item['tot'],
+                            '可借車輛數' : item['sbi'],
+                            '可還車輛數' : item['bemp'],
+                            '營業中' : item['act'],
+                            'latitute' : item['lat'],
+                            'longitute' : item['lng']
+                            } for item in filter_list]
+    st.dataframe(show_data)
 # col1,col2 = st.columns(2)
 # with col1:
 #     selected_sarea = st.selectbox("行政區域",area_list)
