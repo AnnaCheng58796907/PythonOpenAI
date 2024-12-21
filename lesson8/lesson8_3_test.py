@@ -1,7 +1,8 @@
 from tools import fetch_youbike_data
 import streamlit as st
 import pandas as pd
-import pydeck as pdk
+import folium
+from streamlit_folium import st_folium
 
 youbike_data:list[dict] = fetch_youbike_data()
 
@@ -58,12 +59,25 @@ df['site_info'] = df.apply(
     axis=1
 )
 
+# 創建地圖對象，設置初始位置和縮放級別
+m = folium.Map(location=[25.0330, 121.5654], zoom_start=13)
+
 
 # 顯示站點名稱在地圖上方
-st.write("站點名稱:")
-for _, row in df.iterrows():
-    st.write(row['站點'])
+# st.write("站點名稱:")
+# for _, row in df.iterrows():
+#     st.write(row['站點'])
 
+# 在地圖上添加站點標記
+for _, row in df.iterrows():
+    folium.Marker(
+        location=[row['latitude'], row['longitude']],
+        popup=row['站點'],
+    ).add_to(m)
+
+# 顯示地圖
+st.write("站點地圖:")
+st_folium(m, width=700, height=500)
 
 # 顯示地圖並標記站點
 st.map(
@@ -77,3 +91,8 @@ st.map(
 # 在地圖下方顯示站點詳細資訊
 for _, row in df.iterrows():
     st.text(row['site_info'])
+
+
+
+
+
