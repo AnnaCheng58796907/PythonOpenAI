@@ -11,9 +11,11 @@ youbike_data:list[dict] = fetch_youbike_data()
 area_list = list(set(map(lambda value:value['sarea'], youbike_data)))
 
 col1, col2 = st.columns([1, 3])
+with col1:
+    selected_sarea = st.selectbox("行政區域", area_list)
 
-selected_sarea = col1.selectbox("行政區域", area_list)
-st.write(selected_sarea)
+with col2:
+    st.write(selected_sarea)
 # col1,col2 = st.columns(2)
 # with col1:
 #     selected_sarea = st.selectbox("行政區域",area_list)
