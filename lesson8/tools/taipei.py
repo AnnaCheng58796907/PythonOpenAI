@@ -12,12 +12,12 @@ def get_youbikes() -> list[dict]:
     try:
         r: Response = requests.request('GET', url)
         r.raise_for_status()
-    except HTTPError:
-        raise Exception("伺服器有問題!")
-    except RequestException:
-        raise Exception("連線有問題")
-    except Exception:
-        raise Exception("其他問題")
+    except HTTPError as e:
+        raise Exception(f"伺服器有問題: {e}")
+    except RequestException as e:
+        raise Exception(f"連線有問題: {e}")
+    except Exception as e:
+        raise Exception(f"其他問題: {e}")
     else:
         st.success('下載成功')
         file: StringIO = StringIO(r.text)
