@@ -32,24 +32,7 @@ with col2:
                             'longitude' : float(item['lng'])
                             } for item in filter_list]
     st.dataframe(show_data)
-# col1,col2 = st.columns(2)
-# with col1:
-#     selected_sarea = st.selectbox("行政區域",area_list)
 
-
-# with col2:
-#     filter_data = filter(lambda item:item['sarea'] == selected_sarea,youbike_data)
-#     st.dataframe(filter_data)
-
-#顯示地圖
-# filter_data = list(filter(lambda item:item['sarea'] == selected_sarea,youbike_data))
-# locations = [{'lat': float(item['lat']), 'lon': float(item['lng'])} for item in filter_data]
-# st.map(locations)
-
-# 在下方顯示該行政區域的YouBike站點資訊的地圖
-#st.map(show_data, latitude='latitude', longitude='longitude')
-
-#st.map(show_data,latitude='latitude',longitude='longtude')
 # 將資料轉換為 DataFrame
 df = pd.DataFrame(show_data)
 
@@ -60,20 +43,13 @@ df['site_info'] = df.apply(
 )
 
 # 創建地圖對象，設置初始位置和縮放級別
-m = folium.Map(location=[25.0330, 121.5654], zoom_start=13)
- # 顯示地圖並標記站點
-st.map(
+m = st.map(
     data=df,
     latitude='latitude',
     longitude='longitude',
     color='#FF0000',  # 紅色標記
     size=15,          # 標記大小
-)
-
-# 顯示站點名稱在地圖上方
-# st.write("站點名稱:")
-# for _, row in df.iterrows():
-#     st.write(row['站點'])
+    )
 
 # 在地圖上添加站點標記
 for _, row in df.iterrows():
@@ -81,13 +57,3 @@ for _, row in df.iterrows():
         location=[row['latitude'], row['longitude']],
         popup=row['站點'],
     ).add_to(m)
-
-# 顯示地圖
-st.write("站點地圖:")
-#st_folium(m, width=700, height=500)
-
-st_folium(m)
-
-# 在地圖下方顯示站點詳細資訊
-for _, row in df.iterrows():
-    st.text(row['site_info'])
