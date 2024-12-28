@@ -3,3 +3,4 @@ openpyxl
 pandas
 folium
 streamlit_folium
+tensorflow
