@@ -3,4 +3,5 @@ openpyxl
 pandas
 folium
 streamlit_folium
+tf-nightly
 tensorflow
